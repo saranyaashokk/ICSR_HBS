@@ -1,0 +1,22 @@
+﻿@model DataLayer.ViewModels.testmodel.test
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("testpost1","test",FormMethod.Post,new { }))
+{
+    { Html.RenderPartial("testparitalview1", Model.model1); }
+    <input type="submit"  value="submit"/>
+}
+@using (Html.BeginForm("testpost2", "test", FormMethod.Post, new { }))
+{
+    { Html.RenderPartial("testpartialview2", Model.model2); }
+    <button type="submit">submit</button>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

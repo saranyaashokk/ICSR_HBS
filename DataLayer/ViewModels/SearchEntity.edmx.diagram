@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00bae53faf5a4394ba63ff7d14133b2a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.tbl_booking_users" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_collaborative" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_dining_halls" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_event_manager" Width="1.5" PointX="7.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_faculty_IIT" Width="1.5" PointX="10.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_halls" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_approval_status" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_dept_ICSR" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_dept_IIT" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_designation_IIT" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_hallStatus" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_mode_of_payment" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_mst_reservation_type" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_payment" Width="1.5" PointX="10.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_receipt" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_trx_email_log" Width="1.5" PointX="7.5" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_trx_reservation" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.tbl_users_ICSR" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__tbl_booki__deptI__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_colla__deptI__09746778" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_colla__desig__0A688BB1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_colla__reser__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_dinin__hallS__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__d_hal__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_event__reser__03BB8E22" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_facul__deptI__10216507" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_facul__desig__11158940" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_facul__reser__0F2D40CE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_halls__hallS__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__hallI__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__appro__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_users__deptI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_payme__mode___4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__res_t__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_payme__reser__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_recei__payme__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_e__reser__214BF109" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__appro__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__tbl_trx_r__reser__498EEC8D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

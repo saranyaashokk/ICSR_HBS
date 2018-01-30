@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_booking_users">
+    <Key>
+      <PropertyRef Name="booking_userID" />
+    </Key>
+    <Property Name="booking_userID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="deptId" Type="bigint" Nullable="false" />
+    <Property Name="mobile_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="tele_no" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_collaborative">
+    <Key>
+      <PropertyRef Name="collaborativeId" />
+    </Key>
+    <Property Name="collaborativeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reservationId" Type="bigint" Nullable="false" />
+    <Property Name="collaborative_faculty" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="deptId" Type="bigint" Nullable="false" />
+    <Property Name="designationId" Type="bigint" />
+    <Property Name="tele_no" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mobile_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_dining_halls">
+    <Key>
+      <PropertyRef Name="d_hallId" />
+    </Key>
+    <Property Name="d_hallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="d_hallName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="d_hall_capacity" Type="int" Nullable="false" />
+    <Property Name="floor_no" Type="int" Nullable="false" />
+    <Property Name="full_day_rate" Type="int" Nullable="false" />
+    <Property Name="half_day_rate" Type="int" Nullable="false" />
+    <Property Name="hall_description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="hallStatusId" Type="int" Nullable="false" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_event_manager">
+    <Key>
+      <PropertyRef Name="event_managerId" />
+    </Key>
+    <Property Name="event_managerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reservationId" Type="bigint" Nullable="false" />
+    <Property Name="event_manager_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mobile_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_faculty_IIT">
+    <Key>
+      <PropertyRef Name="facultyId" />
+    </Key>
+    <Property Name="facultyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reservationId" Type="bigint" Nullable="false" />
+    <Property Name="facultyName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="deptId" Type="bigint" Nullable="false" />
+    <Property Name="designationId" Type="bigint" />
+    <Property Name="tele_no" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="emailId" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mobile_no" Type="nvarchar" MaxLength="20" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_halls">
+    <Key>
+      <PropertyRef Name="hallId" />
+    </Key>
+    <Property Name="hallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hallName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="hall_capacity" Type="int" />
+    <Property Name="floor_no" Type="int" Nullable="false" />
+    <Property Name="full_day_rate" Type="int" Nullable="false" />
+    <Property Name="half_day_rate" Type="int" Nullable="false" />
+    <Property Name="hall_description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="hallStatusId" Type="int" Nullable="false" />
+    <Property Name="createdTime" Type="datetime" />
+    <Property Name="modifiedTime" Type="datetime" />
+    <Property Name="display_order" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_mst_approval_status">
+    <Key>
+      <PropertyRef Name="approval_statusId" />
+    </Key>
+    <Property Name="approval_statusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="approval_status" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="approval_status_color" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_dept_ICSR">
+    <Key>
+      <PropertyRef Name="deptId" />
+    </Key>
+    <Property Name="deptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="deptName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="is_icsr" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_dept_IIT">
+    <Key>
+      <PropertyRef Name="deptId" />
+    </Key>
+    <Property Name="deptId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="deptName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="deptCode" Type="varchar" MaxLength="10" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_designation_IIT">
+    <Key>
+      <PropertyRef Name="designationId" />
+    </Key>
+    <Property Name="designationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="designation_code" Type="varchar" MaxLength="10" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_hallStatus">
+    <Key>
+      <PropertyRef Name="hallStausId" />
+    </Key>
+    <Property Name="hallStausId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hallStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_mode_of_payment">
+    <Key>
+      <PropertyRef Name="mode_of_paymentId" />
+    </Key>
+    <Property Name="mode_of_paymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mode_of_payment" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_mst_reservation_type">
+    <Key>
+      <PropertyRef Name="res_typeId" />
+    </Key>
+    <Property Name="res_typeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="res_type" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="is_payment" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_payment">
+    <Key>
+      <PropertyRef Name="paymentId" />
+    </Key>
+    <Property Name="paymentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reservationId" Type="bigint" Nullable="false" />
+    <Property Name="mode_of_paymentId" Type="int" Nullable="false" />
+    <Property Name="cheque_no/dd_no" Type="varchar" MaxLength="50" />
+    <Property Name="faculty_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="department" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="amount_paid" Type="bigint" Nullable="false" />
+    <Property Name="amount in words" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="payment_date" Type="datetime" Nullable="false" />
+    <Property Name="debited_account" Type="bigint" />
+    <Property Name="is_full" Type="bit" />
+    <Property Name="is_receipt" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_receipt">
+    <Key>
+      <PropertyRef Name="receiptId" />
+    </Key>
+    <Property Name="receiptId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="paymentId" Type="bigint" Nullable="false" />
+    <Property Name="receipt_date" Type="datetime" Nullable="false" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_trx_email_log">
+    <Key>
+      <PropertyRef Name="email_log_id" />
+    </Key>
+    <Property Name="email_log_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reservationId" Type="bigint" Nullable="false" />
+    <Property Name="from_mailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="to_mailId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="cc1_mailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="cc2_mailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="cc3_mailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="mail_subject" Type="nvarchar" MaxLength="250" />
+    <Property Name="mail_body" Type="nvarchar" MaxLength="500" />
+    <Property Name="attachment_file_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="is_reminder" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_trx_reservation">
+    <Key>
+      <PropertyRef Name="reservationId" />
+    </Key>
+    <Property Name="reservationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hallId" Type="int" Nullable="false" />
+    <Property Name="d_hallId" Type="int" />
+    <Property Name="res_typeId" Type="int" Nullable="false" />
+    <Property Name="programme_title" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="is_collaborative" Type="bit" />
+    <Property Name="start_date" Type="datetime" Nullable="false" />
+    <Property Name="end_date" Type="datetime" Nullable="false" />
+    <Property Name="is_with_dining" Type="bit" />
+    <Property Name="approval_statusId" Type="int" Nullable="false" />
+    <Property Name="approvedBy" Type="bigint" />
+    <Property Name="ApprovedTime" Type="datetime" />
+    <Property Name="reservation_amount" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="is_paid" Type="bit" />
+    <Property Name="createdTime" Type="datetime" />
+    <Property Name="start_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="end_time" Type="time" Precision="7" Nullable="false" />
+    <Property Name="is_fullDay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_users_ICSR">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="full_name" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="designation" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="deptId" Type="int" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="passWord" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="is_approver" Type="bit" />
+    <Property Name="is_active" Type="bit" />
+    <Property Name="createdtime" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__tbl_booki__deptI__6FE99F9F">
+    <End Role="tbl_mst_dept_IIT" Type="Self.tbl_mst_dept_IIT" Multiplicity="1" />
+    <End Role="tbl_booking_users" Type="Self.tbl_booking_users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_dept_IIT">
+        <PropertyRef Name="deptId" />
+      </Principal>
+      <Dependent Role="tbl_booking_users">
+        <PropertyRef Name="deptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_colla__deptI__09746778">
+    <End Role="tbl_mst_dept_IIT" Type="Self.tbl_mst_dept_IIT" Multiplicity="1" />
+    <End Role="tbl_collaborative" Type="Self.tbl_collaborative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_dept_IIT">
+        <PropertyRef Name="deptId" />
+      </Principal>
+      <Dependent Role="tbl_collaborative">
+        <PropertyRef Name="deptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_colla__desig__0A688BB1">
+    <End Role="tbl_mst_designation_IIT" Type="Self.tbl_mst_designation_IIT" Multiplicity="0..1" />
+    <End Role="tbl_collaborative" Type="Self.tbl_collaborative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_designation_IIT">
+        <PropertyRef Name="designationId" />
+      </Principal>
+      <Dependent Role="tbl_collaborative">
+        <PropertyRef Name="designationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_colla__reser__0880433F">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_collaborative" Type="Self.tbl_collaborative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_collaborative">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_dinin__hallS__24927208">
+    <End Role="tbl_mst_hallStatus" Type="Self.tbl_mst_hallStatus" Multiplicity="1" />
+    <End Role="tbl_dining_halls" Type="Self.tbl_dining_halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_hallStatus">
+        <PropertyRef Name="hallStausId" />
+      </Principal>
+      <Dependent Role="tbl_dining_halls">
+        <PropertyRef Name="hallStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_event__reser__03BB8E22">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_event_manager" Type="Self.tbl_event_manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_event_manager">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_facul__deptI__10216507">
+    <End Role="tbl_mst_dept_IIT" Type="Self.tbl_mst_dept_IIT" Multiplicity="1" />
+    <End Role="tbl_faculty_IIT" Type="Self.tbl_faculty_IIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_dept_IIT">
+        <PropertyRef Name="deptId" />
+      </Principal>
+      <Dependent Role="tbl_faculty_IIT">
+        <PropertyRef Name="deptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_facul__desig__11158940">
+    <End Role="tbl_mst_designation_IIT" Type="Self.tbl_mst_designation_IIT" Multiplicity="0..1" />
+    <End Role="tbl_faculty_IIT" Type="Self.tbl_faculty_IIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_designation_IIT">
+        <PropertyRef Name="designationId" />
+      </Principal>
+      <Dependent Role="tbl_faculty_IIT">
+        <PropertyRef Name="designationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_facul__reser__0F2D40CE">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_faculty_IIT" Type="Self.tbl_faculty_IIT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_faculty_IIT">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_halls__hallS__20C1E124">
+    <End Role="tbl_mst_hallStatus" Type="Self.tbl_mst_hallStatus" Multiplicity="1" />
+    <End Role="tbl_halls" Type="Self.tbl_halls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_hallStatus">
+        <PropertyRef Name="hallStausId" />
+      </Principal>
+      <Dependent Role="tbl_halls">
+        <PropertyRef Name="hallStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_payme__mode___4F7CD00D">
+    <End Role="tbl_mst_mode_of_payment" Type="Self.tbl_mst_mode_of_payment" Multiplicity="1" />
+    <End Role="tbl_payment" Type="Self.tbl_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_mode_of_payment">
+        <PropertyRef Name="mode_of_paymentId" />
+      </Principal>
+      <Dependent Role="tbl_payment">
+        <PropertyRef Name="mode_of_paymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_payme__reser__4E88ABD4">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_payment" Type="Self.tbl_payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_payment">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_recei__payme__5535A963">
+    <End Role="tbl_payment" Type="Self.tbl_payment" Multiplicity="1" />
+    <End Role="tbl_receipt" Type="Self.tbl_receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_payment">
+        <PropertyRef Name="paymentId" />
+      </Principal>
+      <Dependent Role="tbl_receipt">
+        <PropertyRef Name="paymentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_e__reser__214BF109">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_trx_email_log" Type="Self.tbl_trx_email_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_trx_email_log">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__appro__3F466844">
+    <End Role="tbl_mst_approval_status" Type="Self.tbl_mst_approval_status" Multiplicity="1" />
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_approval_status">
+        <PropertyRef Name="approval_statusId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation">
+        <PropertyRef Name="approval_statusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__appro__403A8C7D">
+    <End Role="tbl_users_ICSR" Type="Self.tbl_users_ICSR" Multiplicity="0..1" />
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_users_ICSR">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation">
+        <PropertyRef Name="approvedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__d_hal__3A81B327">
+    <End Role="tbl_dining_halls" Type="Self.tbl_dining_halls" Multiplicity="0..1" />
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_dining_halls">
+        <PropertyRef Name="d_hallId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation">
+        <PropertyRef Name="d_hallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__hallI__398D8EEE">
+    <End Role="tbl_halls" Type="Self.tbl_halls" Multiplicity="1" />
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_halls">
+        <PropertyRef Name="hallId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation">
+        <PropertyRef Name="hallId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__res_t__3B75D760">
+    <End Role="tbl_mst_reservation_type" Type="Self.tbl_mst_reservation_type" Multiplicity="1" />
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_reservation_type">
+        <PropertyRef Name="res_typeId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation">
+        <PropertyRef Name="res_typeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_trx_r__reser__498EEC8D">
+    <End Role="tbl_trx_reservation" Type="Self.tbl_trx_reservation" Multiplicity="1" />
+    <End Role="tbl_trx_reservation1" Type="Self.tbl_trx_reservation" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_trx_reservation">
+        <PropertyRef Name="reservationId" />
+      </Principal>
+      <Dependent Role="tbl_trx_reservation1">
+        <PropertyRef Name="reservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_users__deptI__2C3393D0">
+    <End Role="tbl_mst_dept_ICSR" Type="Self.tbl_mst_dept_ICSR" Multiplicity="1" />
+    <End Role="tbl_users_ICSR" Type="Self.tbl_users_ICSR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_mst_dept_ICSR">
+        <PropertyRef Name="deptId" />
+      </Principal>
+      <Dependent Role="tbl_users_ICSR">
+        <PropertyRef Name="deptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="sp_add_booking_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="deptId" Type="bigint" Mode="In" />
+    <Parameter Name="mobile_no" Type="nvarchar" Mode="In" />
+    <Parameter Name="tele_no" Type="varchar" Mode="In" />
+    <Parameter Name="emailId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_add_reservation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hallId" Type="int" Mode="In" />
+    <Parameter Name="res_typeId" Type="int" Mode="In" />
+    <Parameter Name="start_date" Type="datetime" Mode="In" />
+    <Parameter Name="end_date" Type="datetime" Mode="In" />
+    <Parameter Name="start_time" Type="time" Mode="In" />
+    <Parameter Name="end_time" Type="time" Mode="In" />
+    <Parameter Name="programme_title" Type="nvarchar" Mode="In" />
+    <Parameter Name="is_collaborative" Type="bit" Mode="In" />
+    <Parameter Name="facultyName" Type="varchar" Mode="In" />
+    <Parameter Name="deptId" Type="bigint" Mode="In" />
+    <Parameter Name="tele_no" Type="varchar" Mode="In" />
+    <Parameter Name="mobile_no" Type="nvarchar" Mode="In" />
+    <Parameter Name="emailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="event_manager_name" Type="varchar" Mode="In" />
+    <Parameter Name="em_mobile_no" Type="nvarchar" Mode="In" />
+    <Parameter Name="em_emailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="collaborative_faculty" Type="varchar" Mode="In" />
+    <Parameter Name="cfac_deptId" Type="bigint" Mode="In" />
+    <Parameter Name="cfac_tele_no" Type="varchar" Mode="In" />
+    <Parameter Name="cfac_mobile_no" Type="nvarchar" Mode="In" />
+    <Parameter Name="cfac_emailId" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_booking_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_check_availability" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="hallId" Type="int" Mode="In" />
+    <Parameter Name="start_date" Type="datetime" Mode="In" />
+    <Parameter Name="start_time" Type="time" Mode="In" />
+    <Parameter Name="end_date" Type="datetime" Mode="In" />
+    <Parameter Name="end_time" Type="time" Mode="In" />
+  </Function>
+  <Function Name="sp_email_log" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="reservationId" Type="bigint" Mode="In" />
+    <Parameter Name="from_mailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="to_mailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="cc1_mailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="cc2_mailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="cc3_mailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="mail_subject" Type="nvarchar" Mode="In" />
+    <Parameter Name="mail_body" Type="nvarchar" Mode="In" />
+    <Parameter Name="attachment_file_name" Type="nvarchar" Mode="In" />
+    <Parameter Name="is_reminder" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="spGet_faculty_departments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGet_Halls" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="tbl_booking_users" EntityType="Self.tbl_booking_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_collaborative" EntityType="Self.tbl_collaborative" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_dining_halls" EntityType="Self.tbl_dining_halls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_event_manager" EntityType="Self.tbl_event_manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_faculty_IIT" EntityType="Self.tbl_faculty_IIT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_halls" EntityType="Self.tbl_halls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_approval_status" EntityType="Self.tbl_mst_approval_status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_dept_ICSR" EntityType="Self.tbl_mst_dept_ICSR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_dept_IIT" EntityType="Self.tbl_mst_dept_IIT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_designation_IIT" EntityType="Self.tbl_mst_designation_IIT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_hallStatus" EntityType="Self.tbl_mst_hallStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_mode_of_payment" EntityType="Self.tbl_mst_mode_of_payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_mst_reservation_type" EntityType="Self.tbl_mst_reservation_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_payment" EntityType="Self.tbl_payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_receipt" EntityType="Self.tbl_receipt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_email_log" EntityType="Self.tbl_trx_email_log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_trx_reservation" EntityType="Self.tbl_trx_reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_users_ICSR" EntityType="Self.tbl_users_ICSR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_booki__deptI__6FE99F9F" Association="Self.FK__tbl_booki__deptI__6FE99F9F">
+      <End Role="tbl_mst_dept_IIT" EntitySet="tbl_mst_dept_IIT" />
+      <End Role="tbl_booking_users" EntitySet="tbl_booking_users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_colla__deptI__09746778" Association="Self.FK__tbl_colla__deptI__09746778">
+      <End Role="tbl_mst_dept_IIT" EntitySet="tbl_mst_dept_IIT" />
+      <End Role="tbl_collaborative" EntitySet="tbl_collaborative" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_colla__desig__0A688BB1" Association="Self.FK__tbl_colla__desig__0A688BB1">
+      <End Role="tbl_mst_designation_IIT" EntitySet="tbl_mst_designation_IIT" />
+      <End Role="tbl_collaborative" EntitySet="tbl_collaborative" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_colla__reser__0880433F" Association="Self.FK__tbl_colla__reser__0880433F">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_collaborative" EntitySet="tbl_collaborative" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_dinin__hallS__24927208" Association="Self.FK__tbl_dinin__hallS__24927208">
+      <End Role="tbl_mst_hallStatus" EntitySet="tbl_mst_hallStatus" />
+      <End Role="tbl_dining_halls" EntitySet="tbl_dining_halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_event__reser__03BB8E22" Association="Self.FK__tbl_event__reser__03BB8E22">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_event_manager" EntitySet="tbl_event_manager" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_facul__deptI__10216507" Association="Self.FK__tbl_facul__deptI__10216507">
+      <End Role="tbl_mst_dept_IIT" EntitySet="tbl_mst_dept_IIT" />
+      <End Role="tbl_faculty_IIT" EntitySet="tbl_faculty_IIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_facul__desig__11158940" Association="Self.FK__tbl_facul__desig__11158940">
+      <End Role="tbl_mst_designation_IIT" EntitySet="tbl_mst_designation_IIT" />
+      <End Role="tbl_faculty_IIT" EntitySet="tbl_faculty_IIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_facul__reser__0F2D40CE" Association="Self.FK__tbl_facul__reser__0F2D40CE">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_faculty_IIT" EntitySet="tbl_faculty_IIT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_halls__hallS__20C1E124" Association="Self.FK__tbl_halls__hallS__20C1E124">
+      <End Role="tbl_mst_hallStatus" EntitySet="tbl_mst_hallStatus" />
+      <End Role="tbl_halls" EntitySet="tbl_halls" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_payme__mode___4F7CD00D" Association="Self.FK__tbl_payme__mode___4F7CD00D">
+      <End Role="tbl_mst_mode_of_payment" EntitySet="tbl_mst_mode_of_payment" />
+      <End Role="tbl_payment" EntitySet="tbl_payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_payme__reser__4E88ABD4" Association="Self.FK__tbl_payme__reser__4E88ABD4">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_payment" EntitySet="tbl_payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_recei__payme__5535A963" Association="Self.FK__tbl_recei__payme__5535A963">
+      <End Role="tbl_payment" EntitySet="tbl_payment" />
+      <End Role="tbl_receipt" EntitySet="tbl_receipt" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_e__reser__214BF109" Association="Self.FK__tbl_trx_e__reser__214BF109">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_trx_email_log" EntitySet="tbl_trx_email_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__appro__3F466844" Association="Self.FK__tbl_trx_r__appro__3F466844">
+      <End Role="tbl_mst_approval_status" EntitySet="tbl_mst_approval_status" />
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__appro__403A8C7D" Association="Self.FK__tbl_trx_r__appro__403A8C7D">
+      <End Role="tbl_users_ICSR" EntitySet="tbl_users_ICSR" />
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__d_hal__3A81B327" Association="Self.FK__tbl_trx_r__d_hal__3A81B327">
+      <End Role="tbl_dining_halls" EntitySet="tbl_dining_halls" />
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__hallI__398D8EEE" Association="Self.FK__tbl_trx_r__hallI__398D8EEE">
+      <End Role="tbl_halls" EntitySet="tbl_halls" />
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__res_t__3B75D760" Association="Self.FK__tbl_trx_r__res_t__3B75D760">
+      <End Role="tbl_mst_reservation_type" EntitySet="tbl_mst_reservation_type" />
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_trx_r__reser__498EEC8D" Association="Self.FK__tbl_trx_r__reser__498EEC8D">
+      <End Role="tbl_trx_reservation" EntitySet="tbl_trx_reservation" />
+      <End Role="tbl_trx_reservation1" EntitySet="tbl_trx_reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_users__deptI__2C3393D0" Association="Self.FK__tbl_users__deptI__2C3393D0">
+      <End Role="tbl_mst_dept_ICSR" EntitySet="tbl_mst_dept_ICSR" />
+      <End Role="tbl_users_ICSR" EntitySet="tbl_users_ICSR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

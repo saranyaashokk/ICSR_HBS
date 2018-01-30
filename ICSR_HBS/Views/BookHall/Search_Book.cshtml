@@ -1,0 +1,965 @@
+﻿@model DataLayer.ViewModels.HallVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Book Hall - ICSR";
+}
+
+
+
+
+<link href="~/Content/datepicker/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/datepicker/jquery-ui.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+<script type="text/javascript" language="javascript">
+
+    //email wait
+
+    function email_wait() {
+        var dialog = bootbox.dialog({
+            message: '<p class="text-center">Please wait while we do something...</p>',
+            closeButton: false
+        });
+        // do something in the background
+        dialog.modal('hide');
+    }
+
+
+    //Date & time picker
+
+    $(function () {
+
+        //From Time
+        $('#txtFromTime').timepicker({
+
+            timeFormat: 'hh:mm p',
+            interval: 30,
+            minTime: '7:00 am',
+            maxTime: '10:00 pm',
+            // defaultTime: '11',
+            //startTime: '07:00:00',
+            dynamic: true,
+            dropdown: true,
+            scrollbar: true,
+            onSelect: function (selected) {``
+                $("#txtToTime").timepicker("option", "minTime", selected)
+            }
+
+        });
+
+        //To Time
+        $('#txtToTime').timepicker({
+            timeFormat: 'hh:mm p',
+            interval: 30,
+            minTime: '7',
+            maxTime: '10:00 pm',
+            // defaultTime: '11',
+            //startTime: '07:00 am',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true,
+            onSelect: function (selected) {
+                $("#txtFromTime").timepicker("option", "maxTime", selected)
+            },
+
+        });
+
+        //From Date
+        $("#txtFromDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            minDate: 0,
+            maxDate: "+1Y",
+            onSelect: function (selected) {
+                $("#txtToDate").datepicker("option", "minDate", selected)
+            }
+
+        });
+
+        //To Date
+        $("#txtToDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            minDate: 0,
+            maxDate: "+1Y",
+            onSelect: function (selected) {
+                $("#txtFromDate").datepicker("option", "maxDate", selected)
+            }
+        });
+    });
+
+     //show available div
+    $(function () {
+
+        var iIs_reserved = parseInt(@ViewData["iReserved_hall"]);
+        if (iIs_reserved == 0) {
+
+            $('#dv_available').show();
+            $('#dv_BookNow').show();
+
+            //collaborative
+            if ($("#chk_is_collaborative").is(':checked')) {
+                $('#div_collaborative').show();
+                $('#div_collaborative_fields').show();
+            }
+            //scroll
+                $('html, body').animate({
+                    scrollTop: ($(dv_available).offset().top)
+                }, 2000);
+        }
+        else if (iIs_reserved >0){
+            $('#dv_unavailable').show();
+            $('#dv_BookNow').hide();
+        }
+    });
+
+
+    function enable_dining() {
+        $("#dv_dhalls :input").attr("disabled", true);
+        $("#ddl_dHall").get(0).selectedIndex = 0;
+        $("#ddl_dSlot").get(0).selectedIndex = 0;
+
+        if ($("#chk_dining").is(':checked')) {
+            $("#dv_dhalls :input").attr("disabled", false);
+        }
+    }
+
+
+
+    function enable_colFac() {
+        $("#ddl_cfac_dept").get(0).selectedIndex = 0;
+        $("#div_collaborative_fields :input").attr("disabled", true);
+
+        if ($("#chk_is_collaborative").is(':checked')) {
+            $("#div_collaborative_fields :input").attr("disabled", false);
+        }
+    }
+
+
+    function disable() {
+        if ($("#chk_dining").is(':checked')) {
+            $("#dv_dhalls :input").attr("disabled", false);
+        }
+        else   {
+            $("#ddl_dHall").get(0).selectedIndex = 0;
+            $("#ddl_dSlot").get(0).selectedIndex = 0;
+            $("#dv_dhalls :input").attr("disabled", true);
+        }
+
+        if ($("#chk_is_collaborative").is(':checked')) {
+            $("#div_collaborative_fields :input").attr("disabled", false);
+        }
+        else {
+            $("#ddl_cfac_dept").get(0).selectedIndex = 0;
+            $("#div_collaborative_fields :input").attr("disabled", true);
+        }
+    }
+
+
+    function booknow_clear()
+    {
+        $("#ddl_resType").get(0).selectedIndex = 0;
+        $('#txt_prg_title').val('');
+        $('#txt_fac_name').val('');
+        $("#ddl_fac_dept").get(0).selectedIndex = 0;
+        $('#txt_fac_mobile').val('');
+        $('#txt_fac_tele').val('');
+        $('#txt_fac_email').val('');
+        $("#ddl_dHall").get(0).selectedIndex = 0;
+        $("#ddl_dSlot").get(0).selectedIndex = 0;
+        $('#txt_em_name').val('');
+        $('#txt_em_mobile').val('');
+        $('#txt_em_email').val('');
+        $('#txt_cfac').val('');
+        $("#ddl_cfac_dept").get(0).selectedIndex = 0;
+        $('#txt_cfac_mobile').val('');
+        $('#txt_cfac_tele').val('');
+        $('#txt_cfac_email').val('');
+        $('#chk_dining').attr('checked', false);
+        $('#chk_is_collaborative').attr('checked', false);
+    }
+
+    function cancel_booking() {
+
+        booknow_clear();
+
+        $('#dv_BookNow').hide();
+        $('#dv_available').hide();
+        $('#dv_available_warning').hide();
+    }
+
+    function Hall_Availability() {
+        $('#dv_BookNow').hide();
+        $('#dv_available_warning').hide();
+        $('#dv_available').hide();
+        $('#dv_unavailable').hide();
+
+        $.post("@Url.Action("check_hallAvailability", "BookHall")",
+            {
+                hallID: $('[id$=ddlHalls] option:selected').val(),
+                hallName: $("#hallId option:selected").text(),
+                startDate: $("#txtFromDate").val(),
+                startTime: $("#txtFromTime").val(),
+                endDate: $("#txtToDate").val(),
+                endTime: $("#txtToTime").val()
+            },
+            function (data) {
+                if (data.Result == "available" || data.Result == "available_warn")
+                {
+                    //alert("available");
+                    var selHallName = $("#hallId option:selected").text();
+                    var start_datee = $("#txtFromDate").val();
+                    var end_datee = $("#txtToDate").val();
+                    var from_timee = $("#txtFromTime").val();
+                    var to_timee = $("#txtToTime").val()
+                    //$("#lbl_reservation_amount").text("Rs." + data.payable_amount);
+
+                    $('#dv_BookNow').show();
+
+
+                        //dropdown selected text function  -- hall name
+                        document.getElementById("lblHallName").innerHTML = " " + selHallName;
+                        document.getElementById("lblStartDate").innerHTML = " " + start_datee;
+                        document.getElementById("lblEndDate").innerHTML = " " + end_datee;
+                        document.getElementById("lblEventTime").innerHTML = " " + from_timee + " To " + to_timee;
+
+                        if (data.Result == "available") {
+                            $('#dv_available').show();
+                            $("#dv_dhalls :input").attr("disabled", true);
+                            $("#div_collaborative_fields :input").attr("disabled", true);
+                            booknow_clear();
+
+                            //scroll
+                            $('html, body').animate({
+                                scrollTop: ($(dv_available).offset().top)
+                            }, 2000);
+                        }
+                        else {
+                            $('#dv_available_warning').show();
+
+                            //scroll
+                            $('html, body').animate({
+                                scrollTop: ($(dv_available_warning).offset().top)
+                            }, 2000);
+                        }
+                        //$("#dv_search :input").attr("disabled", true);
+                        //$('#ddl_halls').attr("style", "pointer-events: none;");
+                        //$('#dv_search').hide();
+                        //$("#dv_search").css("display", "none");
+
+
+                }
+                else if (data.Result == "not_available") {
+                    $('#dv_unavailable').show();
+                }
+                else if (data.Result == "error")
+                {
+                    //alert("Fill all the fields");
+                    swal("Kindly fill all the fields", "", "error");
+                }
+                else if (data.Result == "time_error") {
+                    //alert("Start time and End time mismatch");
+                    swal("Start time and End time mismatch", "", "error");
+
+                }
+            })
+    }
+
+
+    function book_now() {
+
+        swal({
+            title: "Are you sure?",
+            text: "You want to proceed booking?",
+            type: "warning",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            confirmButtonText: "Yes !",
+            confirmButtonColor: "#ec6c62"
+        },
+
+            function () {
+
+                $.ajax({
+                     type: "POST",
+                     url: '@Url.Action("BookNow", "BookHall",new { area=""})',
+                     success: function (data) {
+                         if (data.success) {
+                             swal(data.title, data.message, "success");
+                             $('#dv_BookNow').hide();
+                             $('#dv_available_warning').hide();
+                             $('#dv_available').hide();
+                             $('#dv_unavailable').hide();
+                         }
+                         else {
+                             swal(data.title, data.message, "error");
+                         }
+                     }
+
+                });
+
+            })
+    }
+
+
+</script>
+
+<script>
+    $(function () {
+        $("form").submit(function () {
+            var selHallText = $("#hallId option:selected").text();
+            $("#hallName").val(selHallText);
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        disable();
+    });
+
+</script>
+
+@using (Ajax.BeginForm("Search_Book", "BookHall", new AjaxOptions { })) // Html.BeginForm("Search_Book", "BookHall", FormMethod.Post))
+
+{
+
+    <div class="row" id="dv_search">
+        <div class="box">
+            <hr>
+            <h2 class="intro-text text-center">
+                <strong> Search for availability </strong>
+            </h2>
+            <hr />
+            <div class="col-lg-1">
+
+            </div>
+            <div class="col-lg-2" style="font-weight:bold">
+                <div id="ddlHalls">
+                    @Html.DropDownListFor(m => m.hallId, new SelectList(Model.halls, "Value", "Text"), "--   Select Hall    --",
+                    new { @class = "form-control", style = "background: no-repeat "/*, id = "ddlHalls"*/ })
+                    @Html.HiddenFor(m => m.hallName, new { id = "hallName" })
+
+                </div>
+            </div>
+
+            @*Start Date*@
+
+            <div class="col-lg-2" style="font-weight:bold">
+                @Html.TextBoxFor(m => m.start_date, new
+           {
+               @placeholder = Html.DisplayNameFor(m => m.start_date),
+               @class = "form-control",
+               id = "txtFromDate",
+               style = "background:no-repeat; ",
+               @readonly = "readonly"
+           })
+
+            </div>
+
+            @*Start Time*@
+            <div class="col-lg-2" style="font-weight:bold;padding-right: 0px;  padding-left: 0px; width:8%">
+
+
+                @Html.TextBoxFor(m => m.start_time, new
+           {
+               @placeholder = Html.DisplayNameFor(m => m.start_time),
+               @class = "form-control",
+               id = "txtFromTime",
+               style = "background:no-repeat; ",
+               @readonly = "readonly"
+           })
+            </div>
+
+            <div class="col-lg-1" style="padding-right: 0px;  padding-left: 1%; padding-top:.5% ; width:2%;">
+                <strong> To </strong>
+            </div>
+
+            @*End Date*@
+            <div class="col-lg-2" style=" font-weight:bold">
+                @Html.TextBoxFor(m => m.end_date, new
+           {
+               @placeholder = @Html.DisplayNameFor(m => m.end_date),
+               @class = "form-control",
+               id = "txtToDate",
+               style = "background: no-repeat; ",
+               @readonly = "readonly"
+           })
+
+            </div>
+
+            @*End Time*@
+
+            <div class="col-lg-2" style="font-weight:bold;padding-right: 0px;  padding-left: 0px; width:8%">
+                @Html.TextBoxFor(m => m.end_time, new
+           {
+               @placeholder = Html.DisplayNameFor(m => m.end_time),
+               @class = "form-control",
+               id = "txtToTime",
+               style = "background:no-repeat; ",
+               @readonly = "readonly"
+           })
+            </div>
+            <div class="col-lg-1" style="padding-top:.5%; display:none">
+                @Html.CheckBoxFor(m => m.is_fullDay, new
+           {
+               @placeholder = Html.DisplayNameFor(m => m.is_fullDay),
+               id = "chk_is_fullDay",
+               style = "background:no-repeat; ",
+               value = "true"
+           })
+                <strong>Is Full Day</strong>
+            </div>
+            <div class="col-lg-1">
+
+                <input type="button" id="btnSearch" class="btn btn-default btn-lg" onclick="Hall_Availability()"
+                       style="background-color:bisque; color:black; height:34px; text-align:center; line-height: 0.7;" value="Search" />
+
+            </div>
+
+            <br /> <br /> <br />
+
+            <div class="col-lg-5" style="width:100%">
+                <div id="dv_available" style="align-content:center; display:none; font-size:large; width:auto">
+                    <div class="alert-success" style="text-align:center">
+                        <strong>
+                            Available
+                        </strong>
+                    </div>
+                </div>
+
+                <div id="dv_unavailable" style="align-content:center; display:none; font-size:large; width:auto">
+                    <div class="alert-danger" style="text-align:center">
+                        <strong>Sorry . Not Available !</strong>
+                    </div>
+                </div>
+
+                <div id="dv_available_warning" style="align-content:center; display:none; font-size:large; width:auto">
+                    <div class="alert-warning" style="text-align:center">
+                        <strong>Available but has other bookings waiting for approval for same timeslot !</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*//Book Now*@
+
+    <div class="container" style="width:90%">
+        <div class="row" id="dv_BookNow" style="display:none;">
+
+
+            <div class="box">
+                <hr>
+                <h2 class="intro-text text-center">
+                    <strong> Book Now </strong>
+                </h2>
+                <hr />
+
+                <div class="col-md-2" style="font-style:italic; font-family:Calibri; width:25%">
+                    <p style="text-align:left;"><u>Booking Details</u></p>
+                    <div style="overflow: hidden;">
+                        <p style="float: left;font-size:medium">Hall :</p>
+
+                        <p id="lblHallName" style="font-weight:bold; float:left;font-size:medium">
+                            @Html.DisplayFor(m => m.hallName)
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden; ">
+                        <p style="float: left;font-size:medium">Faculty :</p>
+
+                        <p id="lblFacultyName" style="font-weight:bold; float:left;font-size:medium"> </p>
+
+                    </div>
+
+                    <div style="overflow: hidden;">
+                        <p style="float: left;font-size:medium">Event Start Date :</p>
+
+                        <p id="lblStartDate" style="font-weight:bold; float:left;font-size:medium; ">
+                            @Html.DisplayFor(m => m.start_date, new {
+
+                           style = "max-width:10px;"
+                            })
+                        </p>
+
+                    </div>
+
+                    <div style="overflow: hidden;">
+                        <p style="float: left;font-size:medium">Event End Date :</p>
+
+                        <p id="lblEndDate" style="font-weight:bold; float:left;font-size:medium">
+                            @Html.DisplayFor(m => m.end_date)
+                        </p>
+
+                    </div>
+
+
+                    <div style="overflow: hidden;">
+                        <p style="float: left;font-size:medium">Event Time :</p>
+
+                        <p id="lblEventTime" style="font-weight:bold; float:left;font-size:medium">
+                            @Html.DisplayFor(m => m.Event_Time)
+                        </p>
+
+                    </div>
+
+
+                    <div style="overflow: hidden; display:none">
+                        <p style="float: left;font-size:medium">Is Full day :</p>
+
+                        <p id="lblIsFullday" style="font-weight:bold; float:left;font-size:medium"> </p>
+
+                    </div>
+
+                    @*<div style="overflow: hidden;">
+                        <p style="float: left;font-size:medium">Payable Amount :</p>
+
+                        <p id="lblPayableAmt" style="font-weight:bold; float:left;font-size:medium">
+                           @Model.reservation_amount   = @ViewBag.payable_amount
+                         
+                                 @Html.DisplayFor(m => m.reservation_amount,
+                                new
+                                {
+                                    id = "lbl_reservation_amount"
+                                })
+                            <label id="lbl_reservation_amount"></label>
+                        </p>
+                    </div>*@
+                </div>
+                <span style="    width: 4px;    height: 500px;      float: left;       border: 1px inset;">
+                </span>
+
+                <div class="col-md-1" style="font-style:normal; font-family:Calibri; width:12%; text-align:right; ">
+                    <p style="font-size:medium; ">
+                        Reservation Type* :
+                    </p>
+
+                    <p style="font-size:medium; padding-top:7%">
+                        Programme Title* :
+                    </p>
+
+
+                    <p style="font-size:medium; padding-top:7%">
+                        Faculty* :
+                    </p>
+                    <p style="font-size:medium; padding-top:131%">
+                        Need Dining Hall ? :
+                    </p>
+                    <p style="color:whitesmoke"> </p>
+                    <p></p>
+                    <p></p>
+
+                </div>
+
+                <div class="col-md-2" style="font-style:normal; font-family:Calibri; width:23% ">
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.DropDownListFor(m => m.res_typeId, new SelectList(Model.resTypeOptions, "Value", "Text"), "--   Select Type    --",
+                                        new { @class = "form-control", id = "ddl_resType", style = "background: no-repeat ; width:100%; " })
+                                @Html.HiddenFor(m => m.res_type)
+                            </strong>
+
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.res_typeId, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium;float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.programme_title, new
+                           {
+                               @class = "form-control",
+                               id = "txt_prg_title",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Event Name"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.programme_title, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium;float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.facultyName, new
+                           {
+                               name = "fac_name",
+                               id = "txt_fac_name",
+                               @class = "form-control",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Name"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.facultyName, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium;float: left; width:90%">
+                            <strong>
+                                @Html.DropDownListFor(m => m.dd_fac_deptId, new SelectList(Model.dd_deps, "Value", "Text"), "--   Select Department    --",
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            style = "background: no-repeat ; width:100%; ",
+                                            id = "ddl_fac_dept"
+                                        })
+                                @Html.HiddenFor(m => m.dd_deptName)
+                            </strong>
+
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.dd_fac_deptId, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden;">
+
+                        <p style="font-size:medium;float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.fac_mobile_no, new
+                           {
+                               @class = "form-control",
+                               id = "txt_fac_mobile",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Mobile No (Eg. 9876543210)"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.fac_mobile_no, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden;">
+
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.fac_tele_no, new
+                           {
+                               @class = "form-control",
+                               id = "txt_fac_tele",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Tele No (Eg. 4321)"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.fac_tele_no, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.fac_emailId, new
+                           {
+                               @class = "form-control",
+                               id = "txt_fac_email",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Email Id"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.fac_emailId, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+                    </div>
+                    <div style="overflow:hidden">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.CheckBoxFor(m => m.is_with_dining, new
+                           {
+                               id = "chk_dining",
+                               style = "background:no-repeat; ",
+                               value = "true",
+                               onclick = "enable_dining()"
+                           })
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div id="dv_dhalls" style="display:block;">
+                        <div style="overflow: hidden;">
+                            <p style="font-size:medium; float: left; width:90%">
+                                <strong>
+                                    @Html.DropDownListFor(m => m.d_hallId, new SelectList(Model.d_halls, "Value", "Text"), "--   Select Dining Hall    --",
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            id = "ddl_dHall",
+                                            style = "background: no-repeat ; width:100%; "
+                                        })
+                                    @Html.HiddenFor(m => m.d_hallName)
+                                </strong>
+
+                            </p>
+                            @*<p style="float:right; width:5%">
+                                <strong>
+                                    @Html.ValidationMessageFor(model => model.res_typeId, "", new { @style = "color:red" })
+                                </strong>
+                            </p>*@
+                        </div>
+
+                        <div style="overflow: hidden;">
+                            <p style="font-size:medium; float: left; width:90%">
+                                <strong>
+                                    @Html.DropDownListFor(m => m.dining_slot_id, new SelectList(Model.d_slots, "Value", "Text"), "--   Select Dining Slot    --",
+                                        new
+                                        {
+                                            @class = "form-control",
+                                            id = "ddl_dSlot",
+                                            style = "background: no-repeat ; width:100%; "
+                                        })
+                                    @Html.HiddenFor(m => m.dining_slot_name)
+                                </strong>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-1" style="font-style:normal; font-family:Calibri; width:13%; text-align:right; ">
+                    <p style="font-size:medium; ">
+                        Event Manager* :
+                    </p>
+                    <p style="font-size:medium; padding-top:65%">
+                        Collaborative Event :
+                    </p>
+                    <div id="div_collaborative" style="display:block">
+                        <p style="font-size:medium; padding-top:0% ">
+                            Collaborative Faculty :
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-2" style="font-style:normal; font-family:Calibri; width:20% ;">
+
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.event_manager_name, new
+                           {
+                               @class = "form-control",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Name",
+                               id= "txt_em_name"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.event_manager_name, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+
+                    </div>
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.EM_mobile_no, new
+                           {
+                               @class = "form-control",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Mobile No (Eg. 9876543210)",
+                               id="txt_em_mobile"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.EM_mobile_no, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+
+                    </div>
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.TextBoxFor(m => m.EM_emailId, new
+                           {
+                               @class = "form-control",
+                               style = "background: no-repeat ; width:100%; ",
+                               @placeholder = "Email Id",
+                               id= "txt_em_email"
+                           })
+                            </strong>
+                        </p>
+                        <p style="float:right; width:5%">
+                            <strong>
+                                @Html.ValidationMessageFor(model => model.EM_emailId, "", new { @style = "color:red" })
+                            </strong>
+                        </p>
+
+                    </div>
+                    <div style="overflow: hidden;">
+                        <p style="font-size:medium; float: left; width:90%">
+                            <strong>
+                                @Html.CheckBoxFor(m => m.is_collaborative, new
+                           {
+                               id = "chk_is_collaborative",
+                               style = "background:no-repeat; ",
+                               value = "true",
+                               onclick = "enable_colFac()"
+                           })
+                            </strong>
+                        </p>
+
+                        <div id="div_collaborative_fields" style="display:block">
+
+                            <p style="font-size:medium; ">
+                                <strong>
+                                    @Html.TextBoxFor(m => m.collaborative_faculty, new
+                               {
+                                   name = "fac_name",
+                                   id = "txt_cfac",
+                                   @class = "form-control",
+                                   style = "background: no-repeat ; width:100%; ",
+                                   @placeholder = "Name"
+                               })
+                                </strong>
+                            </p>
+
+                            <p style="font-size:medium; ">
+                                <strong>
+                                    @Html.DropDownListFor(m => m.dd_cfac_deptId, new SelectList(Model.dd_cfac_deps, "Value", "Text"), "--   Select Department    --",
+                                   new
+                                   {
+                                       @class = "form-control",
+                                       style = "background: no-repeat ; width:100%; ",
+                                       id = "ddl_cfac_dept"
+                                   })
+                                    @Html.HiddenFor(m => m.dd_cfac_deptName)
+                                </strong>
+
+                            </p>
+
+                            <p style="font-size:medium; ">
+                                <strong>
+                                    @Html.TextBoxFor(m => m.CFac_mobile_no, new
+                               {
+                                   @class = "form-control",
+                                   style = "background: no-repeat ; width:100%; ",
+                                   @placeholder = "Mobile No (Eg. 9876543210)",
+                                   id = "txt_cfac_mobile"
+                               })
+                                </strong>
+                            </p>
+
+                            <p style="font-size:medium; ">
+                                <strong>
+                                    @Html.TextBoxFor(m => m.CFac_tele_no, new
+                               {
+                                   @class = "form-control",
+                                   style = "background: no-repeat ; width:100%; ",
+                                   @placeholder = "Tele No (Eg. 4321)",
+                                   id = "txt_cfac_tele"
+                               })
+                                </strong>
+                            </p>
+
+                            <p style="font-size:medium; ">
+                                <strong>
+                                    @Html.TextBoxFor(m => m.CFac_emailId, new
+                               {
+                                   @class = "form-control",
+                                   style = "background: no-repeat ; width:100%; ",
+                                   @placeholder = "Email Id",
+                                   id = "txt_cfac_email"
+                               })
+                                </strong>
+                            </p>
+                        </div>
+                        <br />
+                        <br />
+                        <div style="padding-left:5% ">
+                            <input type="submit" id="btnBookNow" class="btn btn-default btn-lg" style="background-color:firebrick; color:white;
+        height:34px; text-align:center; line-height: 0.7; " onclick="" value="Book Now" />
+                            <input type="button" id="btnCancel" class="btn btn-default btn-lg" onclick="cancel_booking()" style="background-color:firebrick; color:white;
+        height:34px; text-align:center; line-height: 0.7; " value="Cancel" />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                //alert("@ViewBag.Message");
+                //swal("ViewBag.alert", "ViewBag.Message", "ViewBag.alert");
+                swal("Start time and End time mismatch", "", "error");
+            };
+    </script>
+}
+
+
+
+<div class="row" style="display:none">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr>
+            <h2 class="intro-text text-center">
+                Our <strong>Team</strong>
+            </h2>
+            <hr>
+        </div>
+        <div class="col-sm-4 text-center">
+            <img alt="" src="http://placehold.it/750x450" class="img-responsive">
+            <h3>
+                John Smith
+                <small>Job Title</small>
+            </h3>
+        </div>
+        <div class="col-sm-4 text-center">
+            <img alt="" src="http://placehold.it/750x450" class="img-responsive">
+            <h3>
+                John Smith
+                <small>Job Title</small>
+            </h3>
+        </div>
+        <div class="col-sm-4 text-center">
+            <img alt="" src="http://placehold.it/750x450" class="img-responsive">
+            <h3>
+                John Smith
+                <small>Job Title</small>
+            </h3>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+

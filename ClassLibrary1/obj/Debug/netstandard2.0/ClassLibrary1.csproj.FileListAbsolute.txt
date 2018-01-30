@@ -1,0 +1,9 @@
+F:\ICSR_HBS\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.deps.json
+F:\ICSR_HBS\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.dll
+F:\ICSR_HBS\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.pdb
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csprojResolveAssemblyReference.cache
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csproj.CoreCompileInputs.cache
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfoInputs.cache
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfo.cs
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.dll
+F:\ICSR_HBS\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.pdb

@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="SearchEntities">
+    <EntitySetMapping Name="tbl_booking_users">
+      <EntityTypeMapping TypeName="Model.tbl_booking_users">
+        <MappingFragment StoreEntitySet="tbl_booking_users">
+          <ScalarProperty Name="booking_userID" ColumnName="booking_userID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="tele_no" ColumnName="tele_no" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdtime" ColumnName="createdtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_collaborative">
+      <EntityTypeMapping TypeName="Model.tbl_collaborative">
+        <MappingFragment StoreEntitySet="tbl_collaborative">
+          <ScalarProperty Name="collaborativeId" ColumnName="collaborativeId" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="collaborative_faculty" ColumnName="collaborative_faculty" />
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="designationId" ColumnName="designationId" />
+          <ScalarProperty Name="tele_no" ColumnName="tele_no" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdtime" ColumnName="createdtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_dining_halls">
+      <EntityTypeMapping TypeName="Model.tbl_dining_halls">
+        <MappingFragment StoreEntitySet="tbl_dining_halls">
+          <ScalarProperty Name="d_hallId" ColumnName="d_hallId" />
+          <ScalarProperty Name="d_hallName" ColumnName="d_hallName" />
+          <ScalarProperty Name="d_hall_capacity" ColumnName="d_hall_capacity" />
+          <ScalarProperty Name="floor_no" ColumnName="floor_no" />
+          <ScalarProperty Name="full_day_rate" ColumnName="full_day_rate" />
+          <ScalarProperty Name="half_day_rate" ColumnName="half_day_rate" />
+          <ScalarProperty Name="hall_description" ColumnName="hall_description" />
+          <ScalarProperty Name="hallStatusId" ColumnName="hallStatusId" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_event_manager">
+      <EntityTypeMapping TypeName="Model.tbl_event_manager">
+        <MappingFragment StoreEntitySet="tbl_event_manager">
+          <ScalarProperty Name="event_managerId" ColumnName="event_managerId" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="event_manager_name" ColumnName="event_manager_name" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdtime" ColumnName="createdtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_faculty_IIT">
+      <EntityTypeMapping TypeName="Model.tbl_faculty_IIT">
+        <MappingFragment StoreEntitySet="tbl_faculty_IIT">
+          <ScalarProperty Name="facultyId" ColumnName="facultyId" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="designationId" ColumnName="designationId" />
+          <ScalarProperty Name="tele_no" ColumnName="tele_no" />
+          <ScalarProperty Name="emailId" ColumnName="emailId" />
+          <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdtime" ColumnName="createdtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_halls">
+      <EntityTypeMapping TypeName="Model.tbl_halls">
+        <MappingFragment StoreEntitySet="tbl_halls">
+          <ScalarProperty Name="hallId" ColumnName="hallId" />
+          <ScalarProperty Name="hallName" ColumnName="hallName" />
+          <ScalarProperty Name="hall_capacity" ColumnName="hall_capacity" />
+          <ScalarProperty Name="floor_no" ColumnName="floor_no" />
+          <ScalarProperty Name="full_day_rate" ColumnName="full_day_rate" />
+          <ScalarProperty Name="half_day_rate" ColumnName="half_day_rate" />
+          <ScalarProperty Name="hall_description" ColumnName="hall_description" />
+          <ScalarProperty Name="hallStatusId" ColumnName="hallStatusId" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="modifiedTime" ColumnName="modifiedTime" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_approval_status">
+      <EntityTypeMapping TypeName="Model.tbl_mst_approval_status">
+        <MappingFragment StoreEntitySet="tbl_mst_approval_status">
+          <ScalarProperty Name="approval_statusId" ColumnName="approval_statusId" />
+          <ScalarProperty Name="approval_status" ColumnName="approval_status" />
+          <ScalarProperty Name="approval_status_color" ColumnName="approval_status_color" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_dept_ICSR">
+      <EntityTypeMapping TypeName="Model.tbl_mst_dept_ICSR">
+        <MappingFragment StoreEntitySet="tbl_mst_dept_ICSR">
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="deptName" ColumnName="deptName" />
+          <ScalarProperty Name="is_icsr" ColumnName="is_icsr" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_dept_IIT">
+      <EntityTypeMapping TypeName="Model.tbl_mst_dept_IIT">
+        <MappingFragment StoreEntitySet="tbl_mst_dept_IIT">
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="deptName" ColumnName="deptName" />
+          <ScalarProperty Name="deptCode" ColumnName="deptCode" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_designation_IIT">
+      <EntityTypeMapping TypeName="Model.tbl_mst_designation_IIT">
+        <MappingFragment StoreEntitySet="tbl_mst_designation_IIT">
+          <ScalarProperty Name="designationId" ColumnName="designationId" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="designation_code" ColumnName="designation_code" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_hallStatus">
+      <EntityTypeMapping TypeName="Model.tbl_mst_hallStatus">
+        <MappingFragment StoreEntitySet="tbl_mst_hallStatus">
+          <ScalarProperty Name="hallStausId" ColumnName="hallStausId" />
+          <ScalarProperty Name="hallStatus" ColumnName="hallStatus" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_mode_of_payment">
+      <EntityTypeMapping TypeName="Model.tbl_mst_mode_of_payment">
+        <MappingFragment StoreEntitySet="tbl_mst_mode_of_payment">
+          <ScalarProperty Name="mode_of_paymentId" ColumnName="mode_of_paymentId" />
+          <ScalarProperty Name="mode_of_payment" ColumnName="mode_of_payment" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mst_reservation_type">
+      <EntityTypeMapping TypeName="Model.tbl_mst_reservation_type">
+        <MappingFragment StoreEntitySet="tbl_mst_reservation_type">
+          <ScalarProperty Name="res_typeId" ColumnName="res_typeId" />
+          <ScalarProperty Name="res_type" ColumnName="res_type" />
+          <ScalarProperty Name="is_payment" ColumnName="is_payment" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_payment">
+      <EntityTypeMapping TypeName="Model.tbl_payment">
+        <MappingFragment StoreEntitySet="tbl_payment">
+          <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="mode_of_paymentId" ColumnName="mode_of_paymentId" />
+          <ScalarProperty Name="cheque_no_dd_no" ColumnName="cheque_no/dd_no" />
+          <ScalarProperty Name="faculty_name" ColumnName="faculty_name" />
+          <ScalarProperty Name="department" ColumnName="department" />
+          <ScalarProperty Name="amount_paid" ColumnName="amount_paid" />
+          <ScalarProperty Name="amount_in_words" ColumnName="amount in words" />
+          <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+          <ScalarProperty Name="debited_account" ColumnName="debited_account" />
+          <ScalarProperty Name="is_full" ColumnName="is_full" />
+          <ScalarProperty Name="is_receipt" ColumnName="is_receipt" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_receipt">
+      <EntityTypeMapping TypeName="Model.tbl_receipt">
+        <MappingFragment StoreEntitySet="tbl_receipt">
+          <ScalarProperty Name="receiptId" ColumnName="receiptId" />
+          <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+          <ScalarProperty Name="receipt_date" ColumnName="receipt_date" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_email_log">
+      <EntityTypeMapping TypeName="Model.tbl_trx_email_log">
+        <MappingFragment StoreEntitySet="tbl_trx_email_log">
+          <ScalarProperty Name="email_log_id" ColumnName="email_log_id" />
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="from_mailId" ColumnName="from_mailId" />
+          <ScalarProperty Name="to_mailId" ColumnName="to_mailId" />
+          <ScalarProperty Name="cc1_mailId" ColumnName="cc1_mailId" />
+          <ScalarProperty Name="cc2_mailId" ColumnName="cc2_mailId" />
+          <ScalarProperty Name="cc3_mailId" ColumnName="cc3_mailId" />
+          <ScalarProperty Name="mail_subject" ColumnName="mail_subject" />
+          <ScalarProperty Name="mail_body" ColumnName="mail_body" />
+          <ScalarProperty Name="attachment_file_name" ColumnName="attachment_file_name" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="is_reminder" ColumnName="is_reminder" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_trx_reservation">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.tbl_trx_reservation)">
+        <MappingFragment StoreEntitySet="tbl_trx_reservation">
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="is_fullDay" ColumnName="is_fullDay" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="is_paid" ColumnName="is_paid" />
+          <ScalarProperty Name="reservation_amount" ColumnName="reservation_amount" />
+          <ScalarProperty Name="ApprovedTime" ColumnName="ApprovedTime" />
+          <ScalarProperty Name="approvedBy" ColumnName="approvedBy" />
+          <ScalarProperty Name="approval_statusId" ColumnName="approval_statusId" />
+          <ScalarProperty Name="is_with_dining" ColumnName="is_with_dining" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="is_collaborative" ColumnName="is_collaborative" />
+          <ScalarProperty Name="programme_title" ColumnName="programme_title" />
+          <ScalarProperty Name="res_typeId" ColumnName="res_typeId" />
+          <ScalarProperty Name="d_hallId" ColumnName="d_hallId" />
+          <ScalarProperty Name="hallId" ColumnName="hallId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_users_ICSR">
+      <EntityTypeMapping TypeName="Model.tbl_users_ICSR">
+        <MappingFragment StoreEntitySet="tbl_users_ICSR">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="passWord" ColumnName="passWord" />
+          <ScalarProperty Name="is_approver" ColumnName="is_approver" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="createdtime" ColumnName="createdtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_add_booking_user" FunctionName="Model.Store.sp_add_booking_user" />
+    <FunctionImportMapping FunctionImportName="sp_add_reservation" FunctionName="Model.Store.sp_add_reservation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_add_reservation_Result">
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="res_typeId" ColumnName="res_typeId" />
+          <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+          <ScalarProperty Name="fac_email" ColumnName="fac_email" />
+          <ScalarProperty Name="event_manager_name" ColumnName="event_manager_name" />
+          <ScalarProperty Name="em_email" ColumnName="em_email" />
+          <ScalarProperty Name="collaborative_faculty" ColumnName="collaborative_faculty" />
+          <ScalarProperty Name="cfac_email" ColumnName="cfac_email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_booking_list" FunctionName="Model.Store.sp_booking_list">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_booking_list_Result">
+          <ScalarProperty Name="reservationId" ColumnName="reservationId" />
+          <ScalarProperty Name="hallId" ColumnName="hallId" />
+          <ScalarProperty Name="hallName" ColumnName="hallName" />
+          <ScalarProperty Name="programme_title" ColumnName="programme_title" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+          <ScalarProperty Name="event_manager_name" ColumnName="event_manager_name" />
+          <ScalarProperty Name="collaborative_faculty" ColumnName="collaborative_faculty" />
+          <ScalarProperty Name="approval_statusId" ColumnName="approval_statusId" />
+          <ScalarProperty Name="approval_status" ColumnName="approval_status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_check_availability" FunctionName="Model.Store.sp_check_availability">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.sp_check_availability_Result">
+          <ScalarProperty Name="pending_approval_bookings" ColumnName="pending_approval_bookings" />
+          <ScalarProperty Name="approved_bookings" ColumnName="approved_bookings" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_email_log" FunctionName="Model.Store.sp_email_log" />
+    <FunctionImportMapping FunctionImportName="spGet_faculty_departments" FunctionName="Model.Store.spGet_faculty_departments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.spGet_faculty_departments_Result">
+          <ScalarProperty Name="deptId" ColumnName="deptId" />
+          <ScalarProperty Name="deptName" ColumnName="deptName" />
+          <ScalarProperty Name="deptCode" ColumnName="deptCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGet_Halls" FunctionName="Model.Store.spGet_Halls">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Model.spGet_Halls_Result">
+          <ScalarProperty Name="hallId" ColumnName="hallId" />
+          <ScalarProperty Name="hallName" ColumnName="hallName" />
+          <ScalarProperty Name="hall_capacity" ColumnName="hall_capacity" />
+          <ScalarProperty Name="floor_no" ColumnName="floor_no" />
+          <ScalarProperty Name="full_day_rate" ColumnName="full_day_rate" />
+          <ScalarProperty Name="half_day_rate" ColumnName="half_day_rate" />
+          <ScalarProperty Name="hall_description" ColumnName="hall_description" />
+          <ScalarProperty Name="hallStatusId" ColumnName="hallStatusId" />
+          <ScalarProperty Name="hallStatus" ColumnName="hallStatus" />
+          <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+          <ScalarProperty Name="modifiedTime" ColumnName="modifiedTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
